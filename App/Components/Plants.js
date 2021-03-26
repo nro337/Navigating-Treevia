@@ -34,6 +34,7 @@ const Item = ({ http_image_url, common_name, family, scientific_name, genus }) =
 );
 
 const renderItem = ({ item }) => {
+  // Pass params here for details screen
   return <TouchableOpacity onPress={async () => await WebBrowser.openBrowserAsync(item.http_image_url)}>
     <Item common_name={item.common_name} family={item.family} url={item.http_image_url} scientific_name={item.scientific_name} genus={item.genus} http_image_url={item.http_image_url} key={item.key} />
   </TouchableOpacity>;

@@ -84,18 +84,19 @@ export default function App() {
 
 
         {/* Working Search!!! */}
-        {/* <Search value={text} onChangeText={text => setText(text)} loadPlant={() => loadPlants(text)} /> */}
+        <Search value={text} onChangeText={text => setText(text)} loadPlant={() => loadPlants(text)} />
 
 
         {/* <Search value={text} onChangeText={text => setText(text)}/> */}
         {/* <Plants plants={plants} keyExtractor={(item) => {return item['key']}} /> */}
 
-        {/* Workint List!!! */}
+        {/* Working List!!! */}
         {/* <List loading={loading}/> */}
 
-        <AppNavigation />
+        
 
       </View>
+      <AppNavigation />
 
     </SafeAreaView>
   );
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     backgroundColor: 'black',
+    //flexDirection: 'column',
     //justifyContent: 'center',
     //alignItems: 'center'
   },
@@ -113,8 +115,21 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: "black",
-    height: Dimensions.get("window").height,
+    backgroundColor: "green",
+    //height: Dimensions.get("window").height - 120,
+    ...Platform.select({
+      ios: {
+        height: Dimensions.get("window").height - 120,
+        //marginTop: 70,
+      },
+      android: {
+        height: Dimensions.get("window").height - 100,
+        //marginTop: 30
+      },
+      default: {
+        paddingTop: "12%"
+      }
+    }),
   },
   navBar: {
     //flex: 1,

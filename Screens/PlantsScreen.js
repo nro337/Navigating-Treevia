@@ -9,6 +9,10 @@ export default function PlantsScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={{flexShrink: 1}}>
         <Text>Plant tab test</Text>
+        <Button
+        title="Go to Plants"
+        onPress={() => navigation.navigate('PlantsTab')}
+      />
       </Text>
     </View>
   );
@@ -18,6 +22,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 });

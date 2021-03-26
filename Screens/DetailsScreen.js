@@ -3,12 +3,12 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import { material } from 'react-native-typography';
 // import { Metrics } from '../Themes';
 
-export default function SettingsScreen({ navigation }) {
+export default function DetailsScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
       <Text style={{flexShrink: 1}}>
-        <Text>Settings tab test</Text>
+        <Text>Details screen test</Text>
       </Text>
     </View>
   );

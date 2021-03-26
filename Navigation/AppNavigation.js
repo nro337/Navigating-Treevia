@@ -2,30 +2,34 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
-// import { Images, Colors, Metrics } from '../Themes'
-import { StyleSheet, Image } from 'react-native';
-import { PlantsScreen } from '../Screens/PlantsScreen';
-import { SettingsScreen } from '../Screens/PlantsScreen';
+
+import { Colors } from '../App/Themes'
+import { StyleSheet, Image, Text } from 'react-native';
+import PlantsScreen from '../Screens/PlantsScreen';
+import SettingsScreen from '../Screens/SettingsScreen';
+import DetailsScreen from '.././Screens/DetailsScreen';
+
+import { Ionicons } from '@expo/vector-icons';
 
 const PlantStack = createStackNavigator();
-function PlantStackComponent () {
+function PlantStackComponent() {
   return (
     <PlantStack.Navigator headerMode="float">
-      <PlantStack.Screen name = "PlantsScreen" component={PlantsScreen} />
-      <PlantStack.Screen name = "SettingsScreen" component={SettingsScreen} />
+      <PlantStack.Screen name="PlantsScreen" component={PlantsScreen} />
+      <PlantStack.Screen name="DetailsScreen" component={DetailsScreen} />
     </PlantStack.Navigator>
   );
 }
 
-// const SettingsStack = createStackNavigator();
-// function SettingsStackNavigator () {
-//   return (
-//     <SettingsStack.Navigator headerMode="float">
-//       <SettingsStack.Screen name = "SettingsScreen" component={SettingsScreen} />
-//       {/* <HomeStack.Screen name = "UserProfile" component={UserProfileScreen} /> */}
-//     </SettingsStack.Navigator>
-//   );
-// }
+const SettingsStack = createStackNavigator();
+function SettingsStackComponent() {
+  return (
+    <SettingsStack.Navigator headerMode="float">
+      <SettingsStack.Screen name="PlantsScreen" component={PlantsScreen} />
+      <SettingsStack.Screen name="SettingsScreen" component={SettingsScreen} />
+    </SettingsStack.Navigator>
+  );
+}
 
 // const BookmarkStack = createStackNavigator();
 // function BookmarkStackComponent () {
@@ -43,32 +47,41 @@ export default function AppNavigation() {
   return (
     <NavigationContainer>
       <TabNav.Navigator
-        initialRouteName='PlantsTab'
+        initialRouteName='Plants'
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-        
-            if (route.name === 'PlantsTab') {
-              //iconName = 'home';
-              console.log("Plants")
-            } else if (route.name === 'SettingsTab') {
-              //iconName = 'bookmark';
-              console.log('Settings')
+
+            if (route.name === 'Plants') {
+              iconName = focused ? 'leaf' : 'leaf-outline';
+              //console.log("Plants")
+            } else if (route.name === 'Settings') {
+              iconName = focused ? 'settings' : 'settings-outline';
+              //console.log('Settings')
             }
-        
+
             // You can return any component that you like here!
             // return <Entypo name={iconName} size={Metrics.icons.medium} color={color} />;
-            return <Text>Nav Text</Text>
+            return <Ionicons name={iconName} size={size} color={color} />
           },
         })}
-        
         tabBarOptions={{
-          activeTintColor: Colors.black,
+          activeTintColor: "green",
           showLabel: true,
+          safeAreaInsets: {
+            bottom: 30
+          }
         }}>
-        <TabNav.Screen name="PlantsTab" component={PlantStackComponent} />
-        <TabNav.Screen name="SettingsTab" component={SettingsStackComponent} />
+        <TabNav.Screen name="Plants" component={PlantStackComponent} />
+        <TabNav.Screen name="Settings" component={SettingsStackComponent} />
+
       </TabNav.Navigator>
     </NavigationContainer>
   );
 }
+
+const Styles = StyleSheet.create({
+    navContainer: {
+      paddingBottom: 10,
+    }
+});
