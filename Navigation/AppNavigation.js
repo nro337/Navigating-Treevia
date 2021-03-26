@@ -2,28 +2,40 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
-import { Images, Colors, Metrics } from '../Themes'
+// import { Images, Colors, Metrics } from '../Themes'
 import { StyleSheet, Image } from 'react-native';
+import { PlantsScreen } from '../Screens/PlantsScreen';
+import { SettingsScreen } from '../Screens/PlantsScreen';
 
-const HomeStack = createStackNavigator();
-function HomeStackComponent () {
+const PlantStack = createStackNavigator();
+function PlantStackComponent () {
   return (
-    <HomeStack.Navigator headerMode="float">
-      <HomeStack.Screen name = "Home" component={HomeScreen} />
-      {/* <HomeStack.Screen name = "UserProfile" component={UserProfileScreen} /> */}
-    </HomeStack.Navigator>
+    <PlantStack.Navigator headerMode="float">
+      <PlantStack.Screen name = "PlantsScreen" component={PlantsScreen} />
+      <PlantStack.Screen name = "SettingsScreen" component={SettingsScreen} />
+    </PlantStack.Navigator>
   );
 }
 
-const BookmarkStack = createStackNavigator();
-function BookmarkStackComponent () {
-  return (
-    <BookmarkStack.Navigator headerMode="float">
-      <BookmarkStack.Screen name = "Bookmark" component = {BookmarkScreen}/>
-      <BookmarkStack.Screen name = "BookmarkViewer" component = {BookmarkViewerScreen}/>
-    </BookmarkStack.Navigator>
-  );
-}
+// const SettingsStack = createStackNavigator();
+// function SettingsStackNavigator () {
+//   return (
+//     <SettingsStack.Navigator headerMode="float">
+//       <SettingsStack.Screen name = "SettingsScreen" component={SettingsScreen} />
+//       {/* <HomeStack.Screen name = "UserProfile" component={UserProfileScreen} /> */}
+//     </SettingsStack.Navigator>
+//   );
+// }
+
+// const BookmarkStack = createStackNavigator();
+// function BookmarkStackComponent () {
+//   return (
+//     <BookmarkStack.Navigator headerMode="float">
+//       <BookmarkStack.Screen name = "Bookmark" component = {BookmarkScreen}/>
+//       <BookmarkStack.Screen name = "BookmarkViewer" component = {BookmarkViewerScreen}/>
+//     </BookmarkStack.Navigator>
+//   );
+// }
 
 
 const TabNav = createBottomTabNavigator();
@@ -31,19 +43,22 @@ export default function AppNavigation() {
   return (
     <NavigationContainer>
       <TabNav.Navigator
-        initialRouteName='HomeTab'
+        initialRouteName='PlantsTab'
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
         
-            if (route.name === 'HomeTab') {
-              iconName = 'home';
-            } else if (route.name === 'BookmarkTab') {
-              iconName = 'bookmark';
+            if (route.name === 'PlantsTab') {
+              //iconName = 'home';
+              console.log("Plants")
+            } else if (route.name === 'SettingsTab') {
+              //iconName = 'bookmark';
+              console.log('Settings')
             }
         
             // You can return any component that you like here!
-            return <Entypo name={iconName} size={Metrics.icons.medium} color={color} />;
+            // return <Entypo name={iconName} size={Metrics.icons.medium} color={color} />;
+            return <Text>Nav Text</Text>
           },
         })}
         
@@ -51,8 +66,8 @@ export default function AppNavigation() {
           activeTintColor: Colors.black,
           showLabel: true,
         }}>
-        <TabNav.Screen name="HomeTab" component={HomeStackComponent} />
-        {/* <TabNav.Screen name="BookmarkTab" component={BookmarkStackComponent} /> */}
+        <TabNav.Screen name="PlantsTab" component={PlantStackComponent} />
+        <TabNav.Screen name="SettingsTab" component={SettingsStackComponent} />
       </TabNav.Navigator>
     </NavigationContainer>
   );

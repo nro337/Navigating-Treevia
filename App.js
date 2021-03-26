@@ -5,6 +5,7 @@ import APIRequest from './App/Config/APIRequest'
 
 import Plants from './App/Components/Plants'
 import Search from './App/Components/Search'
+import AppNavigation from './Navigation/AppNavigation'
 import { StatusBar } from 'react-native';
 import { Platform } from 'react-native';
 
@@ -80,10 +81,20 @@ export default function App() {
         <View style={styles.navBar}>
           <Image style={styles.logo} source={Images.logo} />
         </View>
-        <Search value={text} onChangeText={text => setText(text)} loadPlant={() => loadPlants(text)} />
+
+
+        {/* Working Search!!! */}
+        {/* <Search value={text} onChangeText={text => setText(text)} loadPlant={() => loadPlants(text)} /> */}
+
+
         {/* <Search value={text} onChangeText={text => setText(text)}/> */}
         {/* <Plants plants={plants} keyExtractor={(item) => {return item['key']}} /> */}
-        <List loading={loading}/>
+
+        {/* Workint List!!! */}
+        {/* <List loading={loading}/> */}
+
+        <AppNavigation />
+
       </View>
 
     </SafeAreaView>
