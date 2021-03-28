@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking, ActivityIndicator, TouchableOpacity, Image, Dimensions, RefreshControl } from 'react-native'
+import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking, ActivityIndicator, TouchableOpacity, Image, Dimensions, RefreshControl, Button } from 'react-native'
 // human interface guideline
 // https://github.com/hectahertz/react-native-typography
 import { human } from 'react-native-typography'
 import { Metrics, Colors, Images } from '../Themes'
 import * as WebBrowser from 'expo-web-browser';
 import { SwipeListView } from 'react-native-swipe-list-view';
+
+import DetailsScreen from '../../Screens/DetailsScreen';
 
 const Item = ({ http_image_url, common_name, family, scientific_name, genus }) => (
 
@@ -36,7 +38,7 @@ const Item = ({ http_image_url, common_name, family, scientific_name, genus }) =
 const renderItem = ({ item, navigation }) => {
   // Pass params here for details screen
   // async () => await WebBrowser.openBrowserAsync(item.http_image_url)
-  return <TouchableOpacity onPress={() => {navigation.navigate()}}>
+  return <TouchableOpacity onPress={() => navigation.navigate('List'), {myParams: item}}>
     <Item common_name={item.common_name} family={item.family} url={item.http_image_url} scientific_name={item.scientific_name} genus={item.genus} http_image_url={item.http_image_url} key={item.key} />
   </TouchableOpacity>;
 };
@@ -149,7 +151,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 90
   },
   treeImageContainer: {
     borderRadius: 20,

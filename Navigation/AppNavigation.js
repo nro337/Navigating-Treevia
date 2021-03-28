@@ -90,7 +90,7 @@ const Tab = createBottomTabNavigator();
 function HomeTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={PlantsScreen} />
+      <Tab.Screen name="Plants" component={PlantsScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
@@ -104,8 +104,9 @@ function HomeStack() {
         headerStyle: {backgroundColor: "white"},
       }}
     >
-        <Stack.Screen name="Home" component={PlantsScreen} options={{title: "Home"}}/>
+        <Stack.Screen name="Plants" component={PlantsScreen} options={{title: "Plants"}}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="List" component={Plants} />
     </Stack.Navigator>
   );
 }
@@ -114,12 +115,12 @@ export default function AppNavigation() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='Home'
+        initialRouteName='Plants'
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
+            if (route.name === 'Plants') {
               iconName = focused ? 'leaf' : 'leaf-outline';
               //console.log("Plants")
             } else if (route.name === 'Settings') {
@@ -140,7 +141,7 @@ export default function AppNavigation() {
             bottom: 30
           }
         }}>
-        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Plants" component={HomeStack} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
         {/* <Stack.Screen name="Settings" component={SettingsScreen} /> */}
       </Tab.Navigator>
