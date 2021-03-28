@@ -6,51 +6,44 @@ import { human } from 'react-native-typography'
 import { Metrics, Colors, Images } from '../Themes'
 import * as WebBrowser from 'expo-web-browser';
 import { SwipeListView } from 'react-native-swipe-list-view';
+import { CommonActions } from '@react-navigation/native';
+
 
 import DetailsScreen from '../../Screens/DetailsScreen';
 
-const Item = ({ http_image_url, common_name, family, scientific_name, genus }) => (
+// const Item = ({ http_image_url, common_name, family, scientific_name, genus, navigation }) => (
 
-  <View style={styles.container}>
-    <View style={styles.treeImageContainer}>
-      <Image source={{ uri: http_image_url }} style={styles.treeImage} />
-    </View>
+//   <View style={styles.container}>
+//     <View style={styles.treeImageContainer}>
+//       <Image source={{ uri: http_image_url }} style={styles.treeImage} />
+//     </View>
 
-    <View style={styles.infoContainer}>
-      <Text style={human.title2}>{common_name}</Text>
-      <View style={styles.sciNameContainer}>
-        <Text style={human.body}>Scientific Name: </Text>
-        <Text style={human.headline}>{scientific_name}</Text>
-      </View>
-      <View style={styles.sciNameContainer}>
-        <Text style={human.body}>Family: </Text>
-        <Text style={human.headline}>{family}</Text>
-      </View>
-      <View style={styles.sciNameContainer}>
-        <Text style={human.body}>Genus: </Text>
-        <Text style={human.headline}>{genus}</Text>
-      </View>
-    </View>
-  </View>
+//     <View style={styles.infoContainer}>
+//       <Text style={human.title2}>{common_name}</Text>
+//       <View style={styles.sciNameContainer}>
+//         <Text style={human.body}>Scientific Name: </Text>
+//         <Text style={human.headline}>{scientific_name}</Text>
+//       </View>
+//       <View style={styles.sciNameContainer}>
+//         <Text style={human.body}>Family: </Text>
+//         <Text style={human.headline}>{family}</Text>
+//       </View>
+//       <View style={styles.sciNameContainer}>
+//         <Text style={human.body}>Genus: </Text>
+//         <Text style={human.headline}>{genus}</Text>
+//       </View>
+//     </View>
+//     <Button title="HI" onPress={() => navigation.navigate('Details')}></Button>
+//   </View>
 
-);
-
-const renderItem = ({ item, navigation }) => {
-  // Pass params here for details screen
-  // async () => await WebBrowser.openBrowserAsync(item.http_image_url)
-  return <TouchableOpacity onPress={() => navigation.navigate('List'), {myParams: item}}>
-    <Item common_name={item.common_name} family={item.family} url={item.http_image_url} scientific_name={item.scientific_name} genus={item.genus} http_image_url={item.http_image_url} key={item.key} />
-  </TouchableOpacity>;
-};
-
-const _handlePressButtonAsync = async () => {
-  await WebBrowser.openBrowserAsync(renderItem);
-  //setResult(result);
-};
+// );
 
 export default function Plants(props, navigation) {
   const [result, setResult] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [plant, setPlant] = useState(null);
+
+
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -118,7 +111,7 @@ export default function Plants(props, navigation) {
       <SwipeListView
         useFlatList={true}
         data={props.plants}
-        renderItem={renderItem}
+        renderItem={props.renderItem}
         renderHiddenItem={renderHiddenItem}
         keyExtractor={props.keyExtractor}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
@@ -126,6 +119,7 @@ export default function Plants(props, navigation) {
         // result={result}
         leftOpenValue={0}
         rightOpenValue={-75}
+        
         
       />
     </View>
@@ -146,7 +140,7 @@ const styles = StyleSheet.create({
   },
   flatList: {
     width: Dimensions.get("screen").width,
-    height: Dimensions.get("window").height,
+    height: Dimensions.get("window").height - 350,
     backgroundColor: "green",
     display: 'flex',
     justifyContent: 'center',

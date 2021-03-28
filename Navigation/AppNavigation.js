@@ -104,7 +104,7 @@ function HomeStack() {
         headerStyle: {backgroundColor: "white"},
       }}
     >
-        <Stack.Screen name="Plants" component={PlantsScreen} options={{title: "Plants"}}/>
+        <Stack.Screen name="Plants" component={PlantsScreen} options={{title: "Listings"}}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="List" component={Plants} />
     </Stack.Navigator>
