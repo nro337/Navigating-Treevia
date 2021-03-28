@@ -33,9 +33,10 @@ const Item = ({ http_image_url, common_name, family, scientific_name, genus }) =
 
 );
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item, navigation }) => {
   // Pass params here for details screen
-  return <TouchableOpacity onPress={async () => await WebBrowser.openBrowserAsync(item.http_image_url)}>
+  // async () => await WebBrowser.openBrowserAsync(item.http_image_url)
+  return <TouchableOpacity onPress={() => {navigation.navigate()}}>
     <Item common_name={item.common_name} family={item.family} url={item.http_image_url} scientific_name={item.scientific_name} genus={item.genus} http_image_url={item.http_image_url} key={item.key} />
   </TouchableOpacity>;
 };
@@ -45,7 +46,7 @@ const _handlePressButtonAsync = async () => {
   //setResult(result);
 };
 
-export default function Plants(props) {
+export default function Plants(props, navigation) {
   const [result, setResult] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -147,7 +148,8 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 90
   },
   treeImageContainer: {
     borderRadius: 20,

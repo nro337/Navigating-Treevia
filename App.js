@@ -8,47 +8,50 @@ import Search from './App/Components/Search'
 import AppNavigation from './Navigation/AppNavigation'
 import { StatusBar } from 'react-native';
 import { Platform } from 'react-native';
+import PlantsScreen from './Screens/PlantsScreen';
 
 export default function App() {
 
-  const [loading, setLoading] = useState(false);
-  const [plants, setPlants] = useState([]);
-  const [text, setText] = useState('');
+  // const [loading, setLoading] = useState(false);
+  // const [plants, setPlants] = useState([]);
+  // const [text, setText] = useState('');
 
 
-  // retrieve lists of plants
-  const loadPlants = async (plantSearch = '', plantFilter = '') => {
-    setLoading(true);
-    setPlants([]);
-    let results = [];
-    // if there is no search term, then get list of plants
-    if (plantSearch !== '') {
-      results = await APIRequest.requestSearchPlants(plantSearch);
-    } else {
-      results = await APIRequest.requestPlantList(plantFilter);
-    }
-    //console.log(results);
-    setLoading(false);
-    setPlants(results);
-  }
+  // // retrieve lists of plants
+  // const loadPlants = async (plantSearch = '', plantFilter = '') => {
+  //   setLoading(true);
+  //   setPlants([]);
+  //   let results = [];
+  //   // if there is no search term, then get list of plants
+  //   if (plantSearch !== '') {
+  //     results = await APIRequest.requestSearchPlants(plantSearch);
+  //   } else {
+  //     results = await APIRequest.requestPlantList(plantFilter);
+  //   }
+  //   //console.log(results);
+  //   setLoading(false);
+  //   setPlants(results);
+  // }
 
-  useEffect(() => { loadPlants() }, []);
+  // useEffect(() => { loadPlants() }, []);
 
 
 
-  const List = ({error, loading}) => {
-    let content;
+  // const List = ({error, loading}) => {
+  //   let content;
 
-    if(error) {
-      content = <Plants plants={plants} keyExtractor={(item) => {return item['key']}} />
-    } else if(loading === true){
-      content = <View style={styles.activityContainer}><ActivityIndicator style={styles.activityIndicator} size="large" color="white" /></View>
-    }else {
-      content = <Plants plants={plants} keyExtractor={(item) => {return item['key']}} loadPlant={() => loadPlants(text)} value={text} setPlants={item => setPlants(item)}/>
-    }
+  //   if(error) {
+  //     content = <Plants plants={plants} keyExtractor={(item) => {return item['key']}} />
+  //   } else if(loading === true){
+  //     content = <View style={styles.activityContainer}><ActivityIndicator style={styles.activityIndicator} size="large" color="white" /></View>
+  //   }else {
+  //     content = <AppNavigation /> 
+  //     //content = <PlantsScreen />
+  //     //content = <Plants plants={plants} keyExtractor={(item) => {return item['key']}} loadPlant={() => loadPlants(text)} value={text} setPlants={item => setPlants(item)}/>
+  //   }
 
-    return <View>{content}</View>
-  }
+  //   return <View>{content}</View>
+  // }
 
 
   // if (loading) {
@@ -84,7 +87,7 @@ export default function App() {
 
 
         {/* Working Search!!! */}
-        <Search value={text} onChangeText={text => setText(text)} loadPlant={() => loadPlants(text)} />
+        {/* <Search value={text} onChangeText={text => setText(text)} loadPlant={() => loadPlants(text)} /> */}
 
 
         {/* <Search value={text} onChangeText={text => setText(text)}/> */}
@@ -92,11 +95,17 @@ export default function App() {
 
         {/* Working List!!! */}
         {/* <List loading={loading}/> */}
+        {/* <View style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', borderColor: "green", borderWidth: 3}}> */}
+          
+          <AppNavigation />
+        {/* </View> */}
+        
+        
 
         
 
       </View>
-      <AppNavigation />
+      {/* <AppNavigation /> */}
 
     </SafeAreaView>
   );
@@ -113,17 +122,17 @@ const styles = StyleSheet.create({
   containerMain: {
     // flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    justifyContent: 'center',
     backgroundColor: "green",
     //height: Dimensions.get("window").height - 120,
     ...Platform.select({
       ios: {
-        height: Dimensions.get("window").height - 120,
+        height: Dimensions.get("window").height - 30,
         //marginTop: 70,
       },
       android: {
-        height: Dimensions.get("window").height - 100,
+        height: Dimensions.get("window").height,
         //marginTop: 30
       },
       default: {
