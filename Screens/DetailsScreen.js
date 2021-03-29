@@ -1,32 +1,34 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View, Image } from 'react-native';
 import { material } from 'react-native-typography';
-import { human } from 'react-native-typography'
+import { human } from 'react-native-typography';
+import { DarkTheme } from '@react-navigation/native';
 // import { Metrics } from '../Themes';
 
 export default function DetailsScreen({ navigation, route }) {
 
   const { myParam } = route.params;
+  const { colors } = DarkTheme;
 
   return (
     <View>
       <View style={styles.treeImageContainer}>
         <Image source={{ uri: myParam.http_image_url }} style={styles.treeImage} />
       </View>
-  
+
       <View style={styles.infoContainer}>
-        <Text style={human.title1}>{myParam.common_name}</Text>
+        <Text style={styles.title1}>{myParam.common_name}</Text>
         <View style={styles.sciNameContainer}>
-          <Text style={human.body}>Scientific Name: </Text>
-          <Text style={human.headline}>{myParam.scientific_name}</Text>
+          <Text style={styles.body_}>Scientific Name: </Text>
+          <Text style={styles.headline}>{myParam.scientific_name}</Text>
         </View>
         <View style={styles.sciNameContainer}>
-          <Text style={human.body}>Family: </Text>
-          <Text style={human.headline}>{myParam.family}</Text>
+          <Text style={styles.body_}>Family: </Text>
+          <Text style={styles.headline}>{myParam.family}</Text>
         </View>
         <View style={styles.sciNameContainer}>
-          <Text style={human.body}>Genus: </Text>
-          <Text style={human.headline}>{myParam.genus}</Text>
+          <Text style={styles.body_}>Genus: </Text>
+          <Text style={styles.headline}>{myParam.genus}</Text>
         </View>
       </View>
     </View>
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   treeName: {
     //fontSize: human.title2,
@@ -74,5 +76,17 @@ const styles = StyleSheet.create({
   },
   backTextWhite: {
     color: '#FFF',
+  },
+  title1: {
+    ...human.title1,
+    color: DarkTheme.colors.text
+  },
+  body_: {
+    ...human.body,
+    color: DarkTheme.colors.text
+  },
+  headline: {
+    ...human.headline,
+    color: DarkTheme.colors.text
   },
 });

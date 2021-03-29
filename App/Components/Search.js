@@ -3,6 +3,7 @@ import { StyleSheet, View, Button, TextInput, TouchableOpacity, TouchableWithout
 import { Metrics, Colors } from '../Themes'
 import { SearchBar } from 'react-native-elements'
 import { Dimensions } from 'react-native'
+import { DarkTheme } from '@react-navigation/native';
 
 
 export default function Search(props) {
@@ -69,10 +70,11 @@ export default function Search(props) {
 const styles = StyleSheet.create({
 	// create styles as necessary	
 	searchBar: {
-		width: '100%'
+		width: '100%',
 	},
 	containerStyle: {
-		width: "100%"
+		width: "100%",
+		backgroundColor: DarkTheme.colors.background
 	}
 
 });

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, StyleSheet, Text, View, ActivityIndicator, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { human } from 'react-native-typography'
+import { DarkTheme } from '@react-navigation/native';
 import APIRequest from '../App/Config/APIRequest'
 //import { material } from 'react-native-typography';
 //import { Metrics } from '../Themes';
@@ -8,6 +9,7 @@ import APIRequest from '../App/Config/APIRequest'
 import Plants from '../App/Components/Plants';
 import Search from '../App/Components/Search';
 import DetailsScreen from './DetailsScreen';
+import colors from '../App/Themes/Colors';
 
 
 export default function PlantsScreen({ navigation }) {
@@ -15,6 +17,8 @@ export default function PlantsScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
   const [plants, setPlants] = useState([]);
   const [text, setText] = useState('');
+
+  const { colors } = DarkTheme;
 
   const renderItem = ({ item }) => {
     // Pass params here for details screen
@@ -27,7 +31,7 @@ export default function PlantsScreen({ navigation }) {
   const Item = ({ common_name }) => (
 
     <View style={styles.container}>
-      <Text style={human.largeTitle}>{common_name}</Text>
+      <Text style={styles.listTitle}>{common_name}</Text>
     </View>
   
   );
@@ -56,11 +60,10 @@ export default function PlantsScreen({ navigation }) {
     if (error) {
       content = <Plants plants={plants} keyExtractor={(item) => { return item['key'] }} />
     } else if (loading === true) {
-      content = <View style={styles.activityContainer}><ActivityIndicator style={styles.activityIndicator} size="large" color="black" /></View>
+      content = <View style={styles.activityContainer}><ActivityIndicator style={styles.activityIndicator} size="large" color="white" /></View>
     } else {
       content =
         <View style={{ flexDirection: 'column' }}>
-          <Search value={text} onChangeText={text => setText(text)} loadPlant={() => loadPlants(text)} />
           <Plants plants={plants} keyExtractor={(item) => { return item['key'] }} loadPlant={() => loadPlants(text)} value={text} setPlants={item => setPlants(item)} renderItem={renderItem} />
         </View>
 
@@ -73,6 +76,7 @@ export default function PlantsScreen({ navigation }) {
 
   return (
     <View>
+      <Search value={text} onChangeText={text => setText(text)} loadPlant={() => loadPlants(text)} />
       <List loading={loading} />
     </View>
   );
@@ -82,9 +86,9 @@ const styles = StyleSheet.create({
   container: {
     height: 70,
     width: Dimensions.get("screen").width,
-    backgroundColor: 'white',
+    backgroundColor: colors.background,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: colors.text,
     alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'row',
@@ -129,4 +133,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     right: 0,
   },
+  listTitle: {
+    ...human.largeTitle,
+    color: colors.text
+  }
 });

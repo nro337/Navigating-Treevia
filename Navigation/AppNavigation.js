@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
 
@@ -101,7 +101,7 @@ function HomeStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: {backgroundColor: "white"},
+        // headerStyle: {backgroundColor: "white"},
       }}
     >
         <Stack.Screen name="Plants" component={PlantsScreen} options={{title: "Listings"}}/>
@@ -113,7 +113,7 @@ function HomeStack() {
 
 export default function AppNavigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Tab.Navigator
         initialRouteName='Plants'
         screenOptions={({ route }) => ({
