@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
 
 import { Colors } from '../App/Themes'
-import { StyleSheet, Image, Text, View, Button } from 'react-native';
+import { StyleSheet, Image, Text, View, Button, Platform } from 'react-native';
 import PlantsScreen from '../Screens/PlantsScreen';
 import SettingsScreen from '../Screens/SettingsScreen';
 import DetailsScreen from '.././Screens/DetailsScreen';
@@ -137,9 +137,27 @@ export default function AppNavigation() {
         tabBarOptions={{
           activeTintColor: "green",
           showLabel: true,
-          safeAreaInsets: {
-            bottom: 40
-          },
+          ...Platform.select({
+            ios: {
+              safeAreaInsets: {
+                bottom: 50
+              }
+            },
+            android: {
+              safeAreaInsets: {
+                bottom: 10
+              }
+            },
+            default: {
+              safeAreaInsets: {
+                bottom: 15
+              }
+            }
+          })
+          // safeAreaInsets: {
+          //   bottom: 10,
+          //   //top: 30
+          // },
           //tabStyle: {marginBottom: 30}
         }}>
         <Tab.Screen name="Plants" component={HomeStack} />

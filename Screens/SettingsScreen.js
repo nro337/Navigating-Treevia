@@ -195,9 +195,8 @@ export default function SettingsScreen({ navigation }) {
         style={{ marginTop: 0 }}
         selectedValue={selectedFlowerColor}
         onValueChange={(itemValue, itemIndex) => { addSelectedFlowerColorState(itemValue, itemIndex) }}
-        itemStyle={{ color: "beige" }}
-
-      //style={{backgroundColor: "gray"}}
+        itemStyle={{ color: DarkTheme.colors.background }}
+        style={{backgroundColor: "white"}}
       >
         <Picker.Item label="Blue" value="blue" />
         <Picker.Item label="Yellow" value="yellow" />
@@ -214,7 +213,8 @@ export default function SettingsScreen({ navigation }) {
         style={{ marginTop: 0 }}
         selectedValue={selectedFruitColor}
         onValueChange={(itemValue, itemIndex) => { addSelectedFruitColorState(itemValue, itemIndex) }}
-        itemStyle={{ color: "beige" }}
+        itemStyle={{ color: DarkTheme.colors.background }}
+        style={{backgroundColor: "white"}}
       >
         <Picker.Item label="Blue" value="blue" />
         <Picker.Item label="Yellow" value="yellow" />

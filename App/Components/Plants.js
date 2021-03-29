@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking, ActivityIndicator, TouchableOpacity, Image, Dimensions, RefreshControl, Button } from 'react-native'
+import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking, ActivityIndicator, TouchableOpacity, Image, Dimensions, RefreshControl, Button, Platform } from 'react-native'
 // human interface guideline
 // https://github.com/hectahertz/react-native-typography
 import { human } from 'react-native-typography'
@@ -140,7 +140,18 @@ const styles = StyleSheet.create({
   },
   flatList: {
     width: Dimensions.get("screen").width,
-    height: Dimensions.get("window").height - 350,
+    ...Platform.select({
+      ios: {
+        height: Dimensions.get("window").height - 350,
+      },
+      android: {
+        height: Dimensions.get("window").height - 280,
+      },
+      default: {
+        paddingTop: "12%"
+      }
+    }),
+    //height: Dimensions.get("window").height - 350,
     backgroundColor: "green",
     display: 'flex',
     justifyContent: 'center',
