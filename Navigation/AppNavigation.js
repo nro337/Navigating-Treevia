@@ -113,7 +113,7 @@ function HomeStack() {
 
 export default function AppNavigation() {
   return (
-    <NavigationContainer theme={DarkTheme}>
+    <NavigationContainer theme={DarkTheme} >
       <Tab.Navigator
         initialRouteName='Plants'
         screenOptions={({ route }) => ({
@@ -138,8 +138,9 @@ export default function AppNavigation() {
           activeTintColor: "green",
           showLabel: true,
           safeAreaInsets: {
-            bottom: 30
-          }
+            bottom: 40
+          },
+          //tabStyle: {marginBottom: 30}
         }}>
         <Tab.Screen name="Plants" component={HomeStack} />
         <Tab.Screen name="Settings" component={SettingsScreen} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator, Dimensions, Image } from 'react-native';
 import { Images, Colors } from './App/Themes'
+import { DarkTheme } from '@react-navigation/native';
 import APIRequest from './App/Config/APIRequest'
 
 import Plants from './App/Components/Plants'
@@ -82,7 +83,7 @@ export default function App() {
       {/* Also, checkout the "./App/Config/APIRequest.js", if you want custom API calls or use test data*/}
       <View style={styles.containerMain}>
         <View style={styles.navBar}>
-          <Image style={styles.logo} source={Images.logo} />
+          <Image style={[styles.logo, {backgroundColor: DarkTheme.colors.background}]} source={Images.logo} />
         </View>
 
 
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
     //height: Dimensions.get("window").height - 120,
     ...Platform.select({
       ios: {
-        height: Dimensions.get("window").height - 30,
+        height: Dimensions.get("window").height - 20,
         //marginTop: 70,
       },
       android: {

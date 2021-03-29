@@ -14,12 +14,15 @@ export default function SettingsScreen({ navigation }) {
   const [state2, setState2] = useState(state2);
   const [selectedFlowerColor, setSelectedFlowerColor] = useState(selectedFlowerColor);
   const [selectedFruitColor, setSelectedFruitColor] = useState(selectedFruitColor);
+
+  const { colors } = DarkTheme;
+
   useEffect(() => {
     readVegetableState();
     // console.log(state);
   }, [])
 
-  const { colors } = DarkTheme;
+  // Vegetable Checkbox Storage
 
   const setVegetableStateFromStorage = (boolean) => {
     setState(JSON.parse(boolean));
@@ -61,6 +64,7 @@ export default function SettingsScreen({ navigation }) {
   }
 
   // -----------------------------------------------------------------------------------
+  // Edible Checkbox Storage
 
   useEffect(() => {
     readEdibleState();
@@ -107,6 +111,7 @@ export default function SettingsScreen({ navigation }) {
   }
 
   // -----------------------------------------------------------------------------------------------
+  // Flower Color Picker Storage
   useEffect(() => {
     readSelectedFlowerColorState();
     // console.log(state);
@@ -142,7 +147,7 @@ export default function SettingsScreen({ navigation }) {
   }
 
   //  -----------------------------------------------------------------------------------------------------
-
+// Fruit Color Storage Picker
 
   useEffect(() => {
     readSelectedFruitColorState();
@@ -197,6 +202,10 @@ export default function SettingsScreen({ navigation }) {
         <Picker.Item label="Blue" value="blue" />
         <Picker.Item label="Yellow" value="yellow" />
         <Picker.Item label="Red" value="red" />
+        <Picker.Item label="Purple" value="purple" />
+        <Picker.Item label="Black" value="black" />
+        <Picker.Item label="White" value="white" />
+        <Picker.Item label="Green" value="green" />
       </Picker>
       <View style={styles.pickerContainer}>
         <Text style={{ fontSize: 30, color: colors.primary }}>Fruit Color</Text>
@@ -210,6 +219,10 @@ export default function SettingsScreen({ navigation }) {
         <Picker.Item label="Blue" value="blue" />
         <Picker.Item label="Yellow" value="yellow" />
         <Picker.Item label="Red" value="red" />
+        <Picker.Item label="Purple" value="purple" />
+        <Picker.Item label="Black" value="black" />
+        <Picker.Item label="White" value="white" />
+        <Picker.Item label="Green" value="green" />
       </Picker>
 
     </View>
